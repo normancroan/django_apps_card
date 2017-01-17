@@ -30,3 +30,9 @@ class Chatter(models.Model):
 	pub_date = models.DateTimeField(default=datetime.datetime.now)
 	def __str__(self):
 		return self.chatter_content
+
+class RedditBot(models.Model):
+	subreddit = models.CharField(max_length=500)
+	matchkey = models.CharField(max_length=500)
+	def __str__(self):
+		return self.matchkey
