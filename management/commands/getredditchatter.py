@@ -8,7 +8,7 @@ class Command(BaseCommand):
 	def handle(self, *args, **options):
 		#new_entry = RedditBot(subreddit="eternalguru", matchkey="sandstorm titan")
 		#new_entry.save()
-		
+
 		# Create the Reddit instance
 		reddit = praw.Reddit('bot1')
 		subreddit = reddit.subreddit('eternalcardgame')
@@ -21,4 +21,4 @@ class Command(BaseCommand):
 		for card in EternalCard.objects.all():
 			for alias in card.aliases:
 				phraseList.append(alias)
-				self.stdout.write('added alias: ',alias)
+				print('added alias: ',alias)
