@@ -6,14 +6,14 @@ subreddit = reddit.subreddit('eternalcardgame')
 observed = []
 
 def setupBot(card, observedList):
-    print('starting bot for: ',card.cardName)
+    print('starting bot for: ',card.name)
     global observed
     observed = observedList
     getSubmissions(subreddit,card)
 
 
 def getSubmissions(subreddit,card):
-    print("getting submissions from: ",subreddit, 'for: ',card.cardName)
+    print("getting submissions from: ",subreddit, 'for: ',card.name)
     for submission in subreddit.hot(limit=5):
         submission.comments.replace_more(limit=0)
         parseSubmission(submission,card)
@@ -46,4 +46,4 @@ def parseComment(comment,card):
                 saveMatch('submission',comment.body,phrase,card)
 
 def saveMatch(matchType,matchContent,phrase,card):
-    print('saving... ',matchType,' to card: ',card.cardName,' with match on alias: ',phrase,'...match is: ',matchContent)
+    print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)

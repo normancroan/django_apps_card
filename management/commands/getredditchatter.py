@@ -15,3 +15,6 @@ class Command(BaseCommand):
 
 		for card in EternalCard.objects.all():
 			rbot.setupBot(card, observed)
+
+		for item in observed:
+			print(item)
