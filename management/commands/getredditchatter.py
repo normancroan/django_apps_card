@@ -12,9 +12,12 @@ class Command(BaseCommand):
 		observed = []
 		for observation in RedditBot.objects.all():
 			observed.append(observation.matchkey)
+			print observation.matchkey
 
 		for card in EternalCard.objects.all():
 			rbot.setupBot(card, observed)
 
 		for item in observed:
-			print(item)
+			#print(item)
+			new_entry = RedditBot(subreddit="eternalguru", matchkey=item)
+			new_entry.save()
