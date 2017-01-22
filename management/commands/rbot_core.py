@@ -20,7 +20,7 @@ def getSubmissions(subreddit,card):
 
 def parseSubmission(submission,card):
     for phrase in card.aliases:
-        print('gathering posts for phrase: ',phrase)
+        #print('gathering posts for phrase: ',phrase)
         # If we haven't harvested this post before
         if str('submission' + submission.id + phrase) not in observed:
         # Do a case insensitive search
@@ -28,6 +28,7 @@ def parseSubmission(submission,card):
                 #print("Bot found match for: ",phrase," at: ",submission.title)
                 # Store the current id into our list
                 observed.append(str('submission' + submission.id + phrase))
+                print('appending a post')
                 saveMatch('submission',submission.title,phrase,card)
 
     for comment in submission.comments.list():
@@ -35,7 +36,7 @@ def parseSubmission(submission,card):
 
 def parseComment(comment,card):
     for phrase in card.aliases:
-        print('gathering comments for phrase: ',phrase)
+        #print('gathering comments for phrase: ',phrase)
         # If we haven't harvested this comment before
         if str('comment' + comment.id + phrase) not in observed:
         # Do a case insensitive search
@@ -43,8 +44,8 @@ def parseComment(comment,card):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
+                print('appending a comment')
                 saveMatch('submission',comment.body,phrase,card)
 
 def saveMatch(matchType,matchContent,phrase,card):
-    self.stdout.write('********WRITING***********')
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
