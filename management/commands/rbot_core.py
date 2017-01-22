@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import praw, re
+import praw, re, calendar, datetime
 from card.models import RedditBot, Chatter, EternalCard
 
 reddit = praw.Reddit('bot1')
@@ -49,4 +49,9 @@ def parseComment(comment,card):
 def saveMatch(matchType,matchContent,phrase,card,date):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
     cardObject = EternalCard.objects.get(name=card.name)
-    new_entry = Chatter.objects.get_or_create(eternalcard=cardObject, chatter_type=matchType, chatter_content=matchContent, chatter_source='reddit', pub_date=date)
+    # Convert a unix time u to a datetime object d, and vice versa
+    def dt(u): 
+        return datetime.datetime.utcfromtimestamp(u)
+    dateObject = dt(date)
+    print(dateObject)
+    new_entry = Chatter.objects.get_or_create(eternalcard=cardObject, chatter_type=matchType, chatter_content=matchContent, chatter_source='reddit', pub_date=dateObject)
