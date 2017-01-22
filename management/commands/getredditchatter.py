@@ -12,7 +12,7 @@ class Command(BaseCommand):
 		observed = []
 		for observation in RedditBot.objects.all():
 			observed.append(observation.matchkey)
-			print observation.matchkey
+			print(observation.matchkey)
 
 		for card in EternalCard.objects.all():
 			rbot.setupBot(card, observed)
