@@ -46,4 +46,5 @@ def parseComment(comment,card):
                 saveMatch('submission',comment.body,phrase,card)
 
 def saveMatch(matchType,matchContent,phrase,card):
+    self.stdout.write('********WRITING***********')
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
