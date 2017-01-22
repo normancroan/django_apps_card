@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import praw, re
+from card.models import RedditBot, Chatter, EternalCard
 
 reddit = praw.Reddit('bot1')
 subreddit = reddit.subreddit('eternalcardgame')
@@ -28,7 +29,6 @@ def parseSubmission(submission,card):
                 #print("Bot found match for: ",phrase," at: ",submission.title)
                 # Store the current id into our list
                 observed.append(str('submission' + submission.id + phrase))
-                print('appending a post')
                 saveMatch('submission',submission.title,phrase,card)
 
     for comment in submission.comments.list():
@@ -44,8 +44,9 @@ def parseComment(comment,card):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
-                print('appending a comment')
                 saveMatch('submission',comment.body,phrase,card)
 
 def saveMatch(matchType,matchContent,phrase,card):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
+    cardObject = EternalCard.objects.get(name=card.name)
+    new_entry = Chatter.objects.get_or_create(eternalcard=cardObject, chatter_type=matchType, chatter_content=matchContent, chatter_source='reddit')
