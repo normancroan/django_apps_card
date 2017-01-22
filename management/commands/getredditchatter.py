@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from card.models import RedditBot, Chatter, EternalCard
-import rbot_core as rbot
+from . import rbot_core as rbot
 
 class Command(BaseCommand):
 	help = 'kicks off the Reddit bot and saved matches to our Chatter database'
