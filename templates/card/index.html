@@ -1,7 +1,7 @@
 {% if latest_chatter_list %}
     <ul>
     {% for chatter in latest_chatter_list %}
-         <li><a href="/card/{{ chatter.eternalcard.num }}/">{{ chatter.chatter_content }}<a/></li>
+         <li><a href="/card/{{ chatter.eternalcard.num }}/">{{ chatter.pub_date '--' chatter.chatter_content }}<a/></li>
     {% endfor %}
     </ul>
 {% else %}
