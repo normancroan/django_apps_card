@@ -49,4 +49,4 @@ def parseComment(comment,card):
 def saveMatch(matchType,matchContent,phrase,card,date):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
     cardObject = EternalCard.objects.get(name=card.name)
-    new_entry = Chatter.objects.get_or_create(eternalcard=cardObject, chatter_type=matchType, chatter_content=matchContent, chatter_source='reddit', pub_date=)
+    new_entry = Chatter.objects.get_or_create(eternalcard=cardObject, chatter_type=matchType, chatter_content=matchContent, chatter_source='reddit', pub_date=date)
