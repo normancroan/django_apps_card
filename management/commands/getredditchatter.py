@@ -19,5 +19,5 @@ class Command(BaseCommand):
 
 		for item in observed:
 			#print(item)
-			new_entry = RedditBot.get_or_create(subreddit="eternalguru", matchkey=item)
+			new_entry = RedditBot.objects.get_or_create(subreddit="eternalguru", matchkey=item)
 			#new_entry.save()
