@@ -7,5 +7,5 @@ urlpatterns = [
 	# ex: /card/4
 	url(r'^(?P<card_id>[0-9]+)/$', views.detail, name='detail'),
 	# /chatter
-	url(r'^chatter/$', views.index, name='chatter')
+	url(r'^chatter/$', views.chatter, name='chatter')
 ]
