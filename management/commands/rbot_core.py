@@ -58,4 +58,7 @@ def saveMatch(matchType,matchContent,phrase,card,date):
         return datetime.datetime.utcfromtimestamp(u)
     dateObject = dt(date)
     print(dateObject)
-    new_entry = Chatter.objects.get_or_create(eternalcard=cardObject, chatter_type=matchType, chatter_content=matchContent, chatter_source='reddit', pub_date=dateObject)
+    try:
+        new_entry = Chatter.objects.get_or_create(eternalcard=cardObject, chatter_type=matchType, chatter_content=matchContent, chatter_source='reddit', pub_date=dateObject)
+    except:
+        print('skipping object')
