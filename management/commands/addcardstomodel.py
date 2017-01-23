@@ -18,12 +18,12 @@ class Command(BaseCommand):
                 text=card.get('text',''),
                 cost=card.get('cost',0),
                 influence=card.get('influence',''),
-                colors=card.get('colors',''),
+                colors=card.get('colors',[]),
                 rarity=card.get('rarity',''),
                 attack=card.get('attack',0),
                 health=card.get('health',0),
                 type=card.get('type',''),
-                subtypes=card.get('subtypes',''),
+                subtypes=card.get('subtypes',[]),
                 num=card.get('num',0),
-                aliases=(1,{card.get('name')})
+                aliases=aliases
                 )
