@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import Chatter
+from .models import Chatter, EternalCard
 # Create your views here.
 
 def index(request):
@@ -11,8 +11,10 @@ def index(request):
 	return render(request, 'card/index.html', context)
 
 def detail(request, card_id):
-	response = "Here you'll find the details for card %s."
-	return HttpResponse(response % card_id)
+	#response = "Here you'll find the details for card %s."
+	#return HttpResponse(response % card_id)
+	card = get_object_or_404(EternalCard, num=card_id)
+	return render(request, 'card/detail.html', {'card': card})
 
 def chatter_detail(request, chatter_id):
 	response = "Here you'll find the details for chatter %s."
