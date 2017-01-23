@@ -25,7 +25,7 @@ def parseSubmission(submission,card):
         # If we haven't harvested this post before
         if str('submission' + submission.id + phrase) not in observed:
         # Do a case insensitive search
-            regex = str(r'\\b'+ phrase +'\\b')
+            regex = str('\\b'+ phrase +'\\b')
             if re.search(regex, submission.title, re.IGNORECASE):
             #if re.search(phrase, submission.title, re.IGNORECASE):
                 #print("Bot found match for: ",phrase," at: ",submission.title)
@@ -42,7 +42,7 @@ def parseComment(comment,card):
         # If we haven't harvested this comment before
         if str('comment' + comment.id + phrase) not in observed:
         # Do a case insensitive search
-            regex = str(r'\\b'+ phrase +'\\b')
+            regex = str('\\b'+ phrase +'\\b')
             if re.search(regex, comment.body, re.IGNORECASE):
             #if re.search(phrase, comment.body, re.IGNORECASE):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
