@@ -10,8 +10,8 @@ def index(request):
 
 def detail(request, card_name):
 	card = get_object_or_404(EternalCard, name__iexact=card_name.replace('_',' '))
-	chatter = EternalCard.objects.filter(pk=card.pk).annotate(chatter_count=Count('chatter'))
-	return render(request, 'card/detail.html', {'card': card, 'chatter': chatter})
+	comments = EternalCard.objects.filter(pk=card.pk).annotate(chatter_count=Count('chatter'))
+	return render(request, 'card/detail.html', {'card': card, 'comments': comments})
 
 def detail_help(request):
 	return render(request, 'card/help.html')
