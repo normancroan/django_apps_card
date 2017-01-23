@@ -12,9 +12,10 @@ class Command(BaseCommand):
                 #print(card.get('attack', '0'))
                 aliases = []
                 aliases.append(card.get('name'))
+                pureName = card.get('name').replace(',','') #remove commas from names
                 new_entry = EternalCard.objects.get_or_create(
                 set=card.get('set',''),
-                name=card.get('name',''),
+                name=pureName,
                 text=card.get('text',''),
                 cost=card.get('cost',0),
                 influence=card.get('influence',''),
