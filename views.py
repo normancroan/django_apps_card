@@ -4,9 +4,9 @@ from .models import Chatter, EternalCard
 # Create your views here.
 
 def index(request):
-	latest_chatter_list = Chatter.objects.order_by('-pub_date')[:5]
-	context = {'latest_chatter_list': latest_chatter_list,}
-	top_cards = EternalCard.objects.annotate(chatter_count=Count('chatter')).order_by('chatter_count')
+	#latest_chatter_list = Chatter.objects.order_by('-pub_date')[:5]
+	#context = {'latest_chatter_list': latest_chatter_list,}
+	top_cards = EternalCard.objects.annotate(chatter_count=Count('chatter')).order_by('chatter_count')[:3]
 	return render(request, 'card/index.html', top_cards)
 
 def detail(request, card_name):
