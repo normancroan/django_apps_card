@@ -9,6 +9,19 @@ class Command(BaseCommand):
         with open('card/management/commands/eternal-0.91.json') as json_data:
             cards = json.load(json_data)
             for card in cards:
-                print(card['name'])
-                #new_entry = RedditBot.objects.get_or_create(subreddit="eternalguru", matchkey=item)
-                #new_entry.save()
+                #print(card['name'])
+                new_entry = EternalCard.objects.get_or_create(
+                set=card['set'],
+                name=card['name'],
+                text=card['text'],
+                cost=card['cost'],
+                influence=card['influence'],
+                colors=card['colors'],
+                rarity=card['rarity'],
+                attack=card['attack'],
+                health=card['health'],
+                type=card['type'],
+                subtypes=card['subtypes'],
+                num=card['num'],
+                aliases=card['name']
+                )
