@@ -25,5 +25,5 @@ class Command(BaseCommand):
                 type=card.get('type',''),
                 subtypes=card.get('subtypes',''),
                 num=card.get('num',0),
-                aliases=aliases
+                aliases=(1,{card.get('name')})
                 )
