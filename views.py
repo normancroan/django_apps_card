@@ -12,6 +12,9 @@ def detail(request, card_name):
 	card = get_object_or_404(EternalCard, name__iexact=card_name.replace('_',' '))
 	return render(request, 'card/detail.html', {'card': card})
 
+def detail_help(request):
+	return render(request, 'card/help.html')
+
 def chatter_detail(request, chatter_id):
 	chatter = get_object_or_404(Chatter, pk=chatter_id)
 	return render(request, 'chatter/detail.html', {'chatter': chatter})

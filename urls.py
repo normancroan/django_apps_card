@@ -4,7 +4,9 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
-	# /card/sandstorm_titan
+	# /card/named/**help file**
+	url(r'^named/$', views.detail_help, name='detail_help'),
+	# /card/named/sandstorm_titan
 	url(r'^named/(?P<card_name>[\w\-]+)/$', views.detail, name='detail'),
 	# /chatter
 	url(r'^chatter/$', views.chatter, name='chatter'),
