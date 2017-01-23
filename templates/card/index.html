@@ -5,7 +5,7 @@ The most discussed cards are currently:<br>
       <li><a href="/cards/named/{{ card.name|fix_name }}/">{{ card.name }} {{ card.chatter_count }}<a/></li>
   {% endfor %}
 </ul>
-And in the last 7 days:<br>
+And in the last 7 days:(soon)<br>
 <ul>
   {% for card in top_cards7 %}
       <li><a href="/cards/named/{{ card.name|fix_name }}/">{{ card.name }} {{ card.chatter_count }}<a/></li>
