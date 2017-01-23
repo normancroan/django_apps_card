@@ -1,1 +1,6 @@
-{{ top_cards }}
+The most discussed cards are currently:<br>
+<ul>
+  {% for card in top_cards %}
+      <li><a href="/cards/named/{{ card.name }}/">{{ card.name }} {{ card.chatter_count }}<a/></li>
+  {% endfor %}
+</ul>
