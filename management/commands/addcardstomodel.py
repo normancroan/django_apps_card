@@ -9,7 +9,7 @@ class Command(BaseCommand):
         with open('card/management/commands/eternal-0.91.json') as json_data:
             cards = json.load(json_data)
             for card in cards:
-                print(card['attack'])
+                print(card.get('attack', '0'))
                 #new_entry = EternalCard.objects.get_or_create(
                 #set=card['set'],
                 #name=card['name'],
