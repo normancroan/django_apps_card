@@ -2,6 +2,6 @@
 <p>Chatter count: {{ card.chatter_set.all|length }}</p><br>
 <ul>
     {% for chatter in card.chatter_set.all %}
-        <li><a href="/cards/chatter/{{ chatter.pk }}/">{{ chatter.pub_date }} -- {{ chatter.chatter_content|truncatechars:100 }}<a/></li>
+        <li><a href="/cards/chatter/{{ chatter.pk }}/">{{ chatter.pub_date }}<br>{{ chatter.chatter_content|truncatechars:100 }}<a/></li>
     {% endfor %}
 </ul>
