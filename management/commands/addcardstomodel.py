@@ -6,7 +6,7 @@ class Command(BaseCommand):
     help = 'adds cards to model from eternal json'
 
     def handle(self, *args, **options):
-        with open('/cards/management/commands/eternal-0.91.json') as json_data:
+        with open('cards/management/commands/eternal-0.91.json') as json_data:
             cards = json.load(json_data)
             for card in cards:
                 print(card['name'])
