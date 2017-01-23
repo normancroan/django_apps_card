@@ -11,7 +11,7 @@ def index(request):
 	return render(request, 'card/index.html', context)
 
 def detail(request, card_name):
-	card = get_object_or_404(EternalCard, name=card_name)
+	card = get_object_or_404(EternalCard, name__iexact=card_name.replace('_',' '))
 	return render(request, 'card/detail.html', {'card': card})
 
 def chatter_detail(request, chatter_id):
