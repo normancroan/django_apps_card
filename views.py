@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-
+from django.db.models import Count
 from .models import Chatter, EternalCard
 # Create your views here.
 
@@ -10,7 +10,8 @@ def index(request):
 
 def detail(request, card_name):
 	card = get_object_or_404(EternalCard, name__iexact=card_name.replace('_',' '))
-	return render(request, 'card/detail.html', {'card': card})
+	chatter = EternalCard.objects.annotate(chatter_count=Count('eternalcard'))
+	return render(request, 'card/detail.html', {'card': card, 'chatter': chatter})
 
 def detail_help(request):
 	return render(request, 'card/help.html')
