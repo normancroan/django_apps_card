@@ -11,14 +11,12 @@ def index(request):
 	return render(request, 'card/index.html', context)
 
 def detail(request, card_id):
-	#response = "Here you'll find the details for card %s."
-	#return HttpResponse(response % card_id)
 	card = get_object_or_404(EternalCard, num=card_id)
 	return render(request, 'card/detail.html', {'card': card})
 
 def chatter_detail(request, chatter_id):
-	response = "Here you'll find the details for chatter %s."
-	return HttpResponse(response % chatter_id)
+	chatter = get_object_or_404(Chatter, pk=chatter_id)
+	return render(request, 'chatter/detail.html', {'chatter': chatter})
 
 def chatter(request):
 	latest_chatter_list = Chatter.objects.order_by('-pub_date')[:5]
