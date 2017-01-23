@@ -9,19 +9,19 @@ class Command(BaseCommand):
         with open('card/management/commands/eternal-0.91.json') as json_data:
             cards = json.load(json_data)
             for card in cards:
-                print(card.get('attack', '0'))
-                #new_entry = EternalCard.objects.get_or_create(
-                #set=card['set'],
-                #name=card['name'],
-                #text=card['text'],
-                #cost=card['cost'],
-                #influence=card['influence'],
-                #colors=card['colors'],
-                #rarity=card['rarity'],
-                #attack=card['attack'],
-                #health=card['health'],
-                #type=card['type'],
-                #subtypes=card['subtypes'],
-                #num=card['num'],
-                #aliases=card['name']
-                #)
+                #print(card.get('attack', '0'))
+                new_entry = EternalCard.objects.get_or_create(
+                set=card.get('set',''),
+                name=card.get('name',''),
+                text=card.get('text',''),
+                cost=card.get('cost',''),
+                influence=card.get('influence',''),
+                colors=card.get('colors',''),
+                rarity=card.get('rarity',''),
+                attack=card.get('attack',''),
+                health=card.get('health',''),
+                type=card.get('type',''),
+                subtypes=card.get('subtypes',''),
+                num=card.get('num',''),
+                aliases=card.get('name','')
+                )
