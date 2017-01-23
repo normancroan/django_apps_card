@@ -1,6 +1,6 @@
 from django import template
 
-register = template.Libray()
+register = template.Library()
 
 @register.filter
 @stringfilter
