@@ -1,4 +1,4 @@
-{{ card.name }}<br>
+{{ card.name }}
 <p>Chatter count: {{ card.chatter_set.all|length }}</p><br>
 <ul>
     {% for chatter in card.chatter_set.all %}

@@ -6,7 +6,8 @@ from .models import Chatter, EternalCard
 def index(request):
 	latest_chatter_list = Chatter.objects.order_by('-pub_date')[:5]
 	context = {'latest_chatter_list': latest_chatter_list,}
-	return render(request, 'card/index.html', context)
+	top_cards = EternalCard.objects.annotate(chatter_count=Count('chatter')).order_by('chatter_count')
+	return render(request, 'card/index.html', top_cards)
 
 def detail(request, card_name):
 	card = get_object_or_404(EternalCard, name__iexact=card_name.replace('_',' '))
@@ -20,6 +21,6 @@ def chatter_detail(request, chatter_id):
 	return render(request, 'chatter/detail.html', {'chatter': chatter})
 
 def chatter(request):
-	latest_chatter_list = Chatter.objects.order_by('-pub_date')[:5]
+	latest_chatter_list = Chatter.objects.order_by('-pub_date')[:200]
 	context = {'latest_chatter_list': latest_chatter_list,}
 	return render(request, 'chatter/index.html', context)
