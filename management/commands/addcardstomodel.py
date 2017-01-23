@@ -14,14 +14,14 @@ class Command(BaseCommand):
                 set=card.get('set',''),
                 name=card.get('name',''),
                 text=card.get('text',''),
-                cost=card.get('cost',''),
+                cost=card.get('cost',0),
                 influence=card.get('influence',''),
                 colors=card.get('colors',''),
                 rarity=card.get('rarity',''),
-                attack=card.get('attack',''),
-                health=card.get('health',''),
+                attack=card.get('attack',0),
+                health=card.get('health',0),
                 type=card.get('type',''),
                 subtypes=card.get('subtypes',''),
-                num=card.get('num',''),
+                num=card.get('num',0),
                 aliases=card.get('name','')
                 )
