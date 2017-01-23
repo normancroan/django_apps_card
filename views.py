@@ -10,9 +10,8 @@ def index(request):
 	context = {'latest_chatter_list': latest_chatter_list,}
 	return render(request, 'card/index.html', context)
 
-def detail(request, card_name):
-	name = card_name.replace('_',' ')
-	card = get_object_or_404(EternalCard, name=card_name)
+def detail(request, card_id):
+	card = get_object_or_404(EternalCard, num=card_id)
 	return render(request, 'card/detail.html', {'card': card})
 
 def chatter_detail(request, chatter_id):
