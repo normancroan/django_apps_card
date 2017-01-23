@@ -8,7 +8,8 @@ def index(request):
 	#latest_chatter_list = Chatter.objects.order_by('-pub_date')[:5]
 	#context = {'latest_chatter_list': latest_chatter_list,}
 	top_cards = EternalCard.objects.annotate(chatter_count=Count('chatter')).order_by('-chatter_count')[:10]
-	top_cards7 = EternalCard.objects.annotate(chatter_count=Count('chatter')).filter(chatter.pub_date__gte=datetime.now()-timedelta(days=7)).order_by('-chatter_count')[:10]
+	top_cards7 = EternalCard.objects.annotate(chatter_count=Count('chatter')).order_by('-chatter_count')[:10]
+	#top_cards7 = EternalCard.objects.annotate(chatter_count=Count('chatter')).filter(chatter.pub_date__gte=datetime.now()-timedelta(days=7)).order_by('-chatter_count')[:10]
 	return render(request, 'card/index.html', {'top_cards': top_cards, 'top_cards7': top_cards7})
 
 def detail(request, card_name):
