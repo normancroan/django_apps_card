@@ -10,8 +10,7 @@ class Command(BaseCommand):
             cards = json.load(json_data)
             for card in cards:
                 #print(card.get('attack', '0'))
-                aliases = []
-                aliases.append(card.get('name'))
+                aliases = (card.get('name'),)
                 new_entry = EternalCard.objects.get_or_create(
                 set=card.get('set',''),
                 name=card.get('name',''),
