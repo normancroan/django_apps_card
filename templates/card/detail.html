@@ -1,2 +1,5 @@
 {{ card.name }}<br>
 <p>Chatter count: {{ chatter }}</p>
+{% for chat in chatter %}
+    {{chat.number_of_answers}}
+{% endfor %}
