@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
 	# /card/sandstorm_titan
-	url(r'^(?P<card_name>[A-z]+)/$', views.detail, name='detail'),
+	url(r'^(?P<card_name>[A-z_]+)/$', views.detail, name='detail'),
 	# /chatter
 	url(r'^chatter/$', views.chatter, name='chatter'),
 	# /chatter/392
