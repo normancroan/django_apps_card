@@ -25,7 +25,9 @@ def parseSubmission(submission,card):
         # If we haven't harvested this post before
         if str('submission' + submission.id + phrase) not in observed:
         # Do a case insensitive search
-            if re.search(phrase, submission.title, re.IGNORECASE):
+            regex = re.compile(r'\\b'+ phrase +'\\b)
+            if re.search(regex, submission.title, re.IGNORECASE):
+            #if re.search(phrase, submission.title, re.IGNORECASE):
                 #print("Bot found match for: ",phrase," at: ",submission.title)
                 # Store the current id into our list
                 observed.append(str('submission' + submission.id + phrase))
@@ -50,7 +52,7 @@ def saveMatch(matchType,matchContent,phrase,card,date):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
     cardObject = EternalCard.objects.get(name=card.name)
     # Convert a unix time u to a datetime object d, and vice versa
-    def dt(u): 
+    def dt(u):
         return datetime.datetime.utcfromtimestamp(u)
     dateObject = dt(date)
     print(dateObject)
