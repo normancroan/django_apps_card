@@ -11,7 +11,6 @@ def index(request):
 	return render(request, 'card/index.html', context)
 
 def detail(request, card_name):
-	print(card_name)
 	name = card_name.replace('_',' ')
 	card = get_object_or_404(EternalCard, name=card_name)
 	return render(request, 'card/detail.html', {'card': card})
