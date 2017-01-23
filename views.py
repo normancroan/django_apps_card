@@ -19,7 +19,7 @@ def detail(request, card_id):
 	response = "Here you'll find the details for card %s."
 	return HttpResponse(response % card_id)
 
-def chatter_detail(request, card_id):
+def chatter_detail(request, chatter_id):
 	response = "Here you'll find the details for chatter %s."
 	return HttpResponse(response % chatter_id)
 
