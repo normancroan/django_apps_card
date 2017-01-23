@@ -42,7 +42,9 @@ def parseComment(comment,card):
         # If we haven't harvested this comment before
         if str('comment' + comment.id + phrase) not in observed:
         # Do a case insensitive search
-            if re.search(phrase, comment.body, re.IGNORECASE):
+            regex = str(r'\\b'+ phrase +'\\b')
+            if re.search(regex, comment.body, re.IGNORECASE):
+            #if re.search(phrase, comment.body, re.IGNORECASE):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
