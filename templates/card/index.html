@@ -5,7 +5,7 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 {% load card_custom_filters %}
 The most discussed cards are currently:<br>
-<p>Test Card:{{ top_cards|first }}</p>
+<p>Test Card: {{ top_cards|second }}</p>
 <ul>
   {% for card in top_cards %}
       <li><a href="/cards/named/{{ card.name|fix_name }}/">{{ card.name }} {{ card.chatter_count }}<a/></li>
