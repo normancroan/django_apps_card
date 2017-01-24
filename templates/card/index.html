@@ -19,6 +19,7 @@ And in the last 7 days:(soon)<br>
 <div id="container" style="width:100%; height:400px;"></div>
 <script>
 $(function () {
+    var card1 = {{ top_cards[0].name }}
     var myChart = Highcharts.chart('container', {
         chart: {
             type: 'bar'
@@ -27,7 +28,7 @@ $(function () {
             text: 'Fruit Consumption'
         },
         xAxis: {
-            categories: [{ topcard[0].name }, 'Bananas', 'Oranges']
+            categories: [card1, 'Bananas', 'Oranges']
         },
         yAxis: {
             title: {
