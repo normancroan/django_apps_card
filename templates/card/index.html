@@ -5,6 +5,7 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 {% load card_custom_filters %}
 The most discussed cards are currently:<br>
+<p>Test Card:{{ top_cards[0] }}</p>
 <ul>
   {% for card in top_cards %}
       <li><a href="/cards/named/{{ card.name|fix_name }}/">{{ card.name }} {{ card.chatter_count }}<a/></li>
@@ -19,30 +20,26 @@ And in the last 7 days:(soon)<br>
 <div id="container" style="width:100%; height:400px;"></div>
 <script>
 $(function () {
-    var cards = []
-    {% for card in top_cards %}
-      cards.push(card)
-    {% endfor %}
     var myChart = Highcharts.chart('container', {
         chart: {
             type: 'bar'
         },
         title: {
-            text: 'Fruit Consumption'
+            text: 'Most Popular Cards'
         },
         xAxis: {
-            categories: [cards[0].name, 'Bananas', 'Oranges']
+            categories: ['Torch', 'Sandstorm Titan', 'Some Other Card']
         },
         yAxis: {
             title: {
-                text: 'Fruit eaten'
+                text: 'Posts'
             }
         },
         series: [{
-            name: 'Jane',
+            name: 'Reddit',
             data: [1, 0, 4]
         }, {
-            name: 'John',
+            name: 'Twitter',
             data: [5, 7, 3]
         }]
     });
