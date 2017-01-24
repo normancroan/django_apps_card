@@ -10,12 +10,6 @@ The most discussed cards are currently:<br>
       <li><a href="/cards/named/{{ card.name|fix_name }}/">{{ card.name }} {{ card.chatter_count }}<a/></li>
   {% endfor %}
 </ul>
-And in the last 7 days:(soon)<br>
-<ul>
-  {% for card in top_cards7 %}
-      <li><a href="/cards/named/{{ card.name|fix_name }}/">{{ card.name }} {{ card.chatter_count }}<a/></li>
-  {% endfor %}
-</ul>
 <div id="container" style="width:100%; height:400px;"></div>
 <script>
 $(function () {
@@ -24,7 +18,7 @@ $(function () {
             type: 'bar'
         },
         title: {
-            text: 'Most Popular Cards'
+            text: 'Most Popular Cards (placeholder data)'
         },
         xAxis: {
             categories: ['Torch', 'Sandstorm Titan', 'Some Other Card']
