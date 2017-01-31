@@ -3,7 +3,6 @@ import praw, re, calendar, datetime
 from card.models import RedditBot, Chatter, EternalCard
 
 reddit = praw.Reddit('bot1')
-print(reddit.get_info(thing_id='t1_acx23'))
 subreddit = reddit.subreddit('eternalcardgame')
 observed = []
 
@@ -48,7 +47,7 @@ def parseComment(comment,card,submission):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
-                saveMatch('comment',comment.body,phrase,card,comment.created_utc,comment.parent_id)
+                saveMatch('comment',comment.body,phrase,card,comment.created_utc,comment.parent())
 
 def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
