@@ -47,11 +47,11 @@ def parseComment(comment,card,submission):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
-                saveMatch('comment',comment.body,phrase,card,comment.created_utc,comment.parent().body)
+                saveMatch('comment',comment.body,phrase,card,comment.created_utc,comment.parent())
 
 def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
-    print('parent is: ',parent)
+    print('parent is: ',type(parent))
     cardObject = EternalCard.objects.get(name=card.name)
     # Convert a unix time u to a datetime object d, and vice versa
     def dt(u):
