@@ -7,19 +7,19 @@ subreddit = reddit.subreddit('eternalcardgame')
 observed = []
 
 
-def setupBot(card, observedList):
+def setupBot(card,observedList,reddit):
     print('starting bot for: ',card.name)
     global observed
     observed = observedList
     getSubmissions(subreddit,card)
 
-def getSubmissions(subreddit,card):
+def getSubmissions(subreddit,card,reddit):
     print("getting submissions from: ",subreddit, 'for: ',card.name)
     for submission in subreddit.hot(limit=1):
         submission.comments.replace_more(limit=0)
-        parseSubmission(submission,card)
+        parseSubmission(submission,card,reddit)
 
-def parseSubmission(submission,card):
+def parseSubmission(submission,card,reddit):
     for phrase in card.aliases:
         #print('gathering posts for phrase: ',phrase)
         # If we haven't harvested this post before
@@ -34,10 +34,9 @@ def parseSubmission(submission,card):
                 saveMatch('post',submission.title,phrase,card,submission.created_utc)
 
     for comment in submission.comments.list():
-        parseComment(comment,card,submission)
+        parseComment(comment,card,submission,reddit)
 
-def parseComment(comment,card,submission):
-    global reddit
+def parseComment(comment,card,submission,reddit):
     for phrase in card.aliases:
         #print('gathering comments for phrase: ',phrase)
         # If we haven't harvested this comment before
@@ -49,7 +48,7 @@ def parseComment(comment,card,submission):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
-                saveMatch('comment',comment.body,phrase,card,comment.created_utc,reddit.get_info(comment_id='comment.parent_id'))
+                saveMatch('comment',comment.body,phrase,card,comment.created_utc,reddit.get_info(thing_id=comment.parent_id))
 
 def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
