@@ -31,7 +31,7 @@ def parseSubmission(submission,card):
                 #print("Bot found match for: ",phrase," at: ",submission.title)
                 # Store the current id into our list
                 observed.append(str('submission' + submission.id + phrase))
-                saveMatch('post',submission.title,phrase,card,submission.created_utc, submission.parent)
+                saveMatch('post',submission.title,phrase,card,submission.created_utc)
 
     for comment in submission.comments.list():
         parseComment(comment,card)
@@ -48,7 +48,7 @@ def parseComment(comment,card):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
-                saveMatch('comment',comment.body,phrase,card,comment.created_utc,comment.parent)
+                saveMatch('comment',comment.body,phrase,card,comment.created_utc,praw.get_info(comment.parent_id))
 
 def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
