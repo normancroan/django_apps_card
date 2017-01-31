@@ -3,7 +3,7 @@ import praw, re, calendar, datetime
 from card.models import RedditBot, Chatter, EternalCard
 
 reddit = praw.Reddit('bot1')
-print(reddit.get_comments(thing_id='t1_acx23'))
+print(reddit.get_info(thing_id='t1_acx23'))
 subreddit = reddit.subreddit('eternalcardgame')
 observed = []
 
