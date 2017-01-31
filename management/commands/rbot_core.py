@@ -15,7 +15,7 @@ def setupBot(card,observedList):
 def getSubmissions(subreddit,card):
     print("getting submissions from: ",subreddit, 'for: ',card.name)
     for submission in subreddit.hot(limit=1):
-        print(submission.get_info(thing_id='t1_acx23'))
+        print(submission.get_comments(thing_id='t1_acx23'))
         submission.comments.replace_more(limit=0)
         parseSubmission(submission,card)
 
