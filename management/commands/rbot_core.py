@@ -6,12 +6,12 @@ reddit = praw.Reddit('bot1')
 subreddit = reddit.subreddit('eternalcardgame')
 observed = []
 
+
 def setupBot(card, observedList):
     print('starting bot for: ',card.name)
     global observed
     observed = observedList
     getSubmissions(subreddit,card)
-
 
 def getSubmissions(subreddit,card):
     print("getting submissions from: ",subreddit, 'for: ',card.name)
@@ -37,6 +37,7 @@ def parseSubmission(submission,card):
         parseComment(comment,card,submission)
 
 def parseComment(comment,card,submission):
+    global reddit
     for phrase in card.aliases:
         #print('gathering comments for phrase: ',phrase)
         # If we haven't harvested this comment before
@@ -48,7 +49,7 @@ def parseComment(comment,card,submission):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
-                saveMatch('comment',comment.body,phrase,card,comment.created_utc,submission.get_info(comment_id='comment.parent_id'))
+                saveMatch('comment',comment.body,phrase,card,comment.created_utc,submission.reddit.get_info(comment_id='comment.parent_id'))
 
 def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
