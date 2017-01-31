@@ -51,7 +51,7 @@ def parseComment(comment,card,submission):
 
 def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
-    if type(parent) = praw.models.reddit.comment.Comment:
+    if type(parent) == praw.models.reddit.comment.Comment:
         print('parent is: ',type(parent))
         print("and it's a comment")
     cardObject = EternalCard.objects.get(name=card.name)
