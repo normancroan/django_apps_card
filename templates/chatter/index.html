@@ -3,7 +3,7 @@
     <ul>
     {% for chatter in latest_chatter_list %}
       <ul>
-        <li>{{ chatter.parent|truncatechars:100 }}</li>
+        <li>{{ chatter.chatter_parent|truncatechars:100 }}</li>
         <li><p>reply:</p><a href="/cards/chatter/{{ chatter.pk }}/">{{ chatter.pub_date }} {{ chatter.eternalcard.name }} {{ chatter.chatter_content|truncatechars:100 }}<a/></li>
       </ul>
     {% endfor %}
