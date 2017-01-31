@@ -36,7 +36,7 @@ def parseSubmission(submission,card,r):
     for comment in submission.comments.list():
         parseComment(comment,card,submission,r)
 
-def parseComment(comment,card,submission):
+def parseComment(comment,card,submission,r):
     for phrase in card.aliases:
         #print('gathering comments for phrase: ',phrase)
         # If we haven't harvested this comment before
