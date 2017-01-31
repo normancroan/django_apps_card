@@ -10,16 +10,16 @@ def setupBot(card,observedList):
     print('starting bot for: ',card.name)
     global observed
     observed = observedList
-    r = praw.Reddit('bot1')
-    getSubmissions(subreddit,card,r)
+    getSubmissions(subreddit,card)
 
-def getSubmissions(subreddit,card,r):
+def getSubmissions(subreddit,card):
     print("getting submissions from: ",subreddit, 'for: ',card.name)
     for submission in subreddit.hot(limit=1):
+        print(submission.get_info(thing_id='t1_acx23'))
         submission.comments.replace_more(limit=0)
-        parseSubmission(submission,card,r)
+        parseSubmission(submission,card)
 
-def parseSubmission(submission,card,r):
+def parseSubmission(submission,card):
     for phrase in card.aliases:
         #print('gathering posts for phrase: ',phrase)
         # If we haven't harvested this post before
@@ -34,9 +34,9 @@ def parseSubmission(submission,card,r):
                 saveMatch('post',submission.title,phrase,card,submission.created_utc)
 
     for comment in submission.comments.list():
-        parseComment(comment,card,submission,r)
+        parseComment(comment,card,submission)
 
-def parseComment(comment,card,submission,r):
+def parseComment(comment,card,submission):
     for phrase in card.aliases:
         #print('gathering comments for phrase: ',phrase)
         # If we haven't harvested this comment before
@@ -48,7 +48,7 @@ def parseComment(comment,card,submission,r):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
-                saveMatch('comment',comment.body,phrase,card,comment.created_utc,r.get_info(thing_id=comment.parent_id))
+                saveMatch('comment',comment.body,phrase,card,comment.created_utc,comment.parent_id)
 
 def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
