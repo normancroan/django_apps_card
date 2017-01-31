@@ -15,7 +15,7 @@ class Command(BaseCommand):
 			print(observation.matchkey)
 
 		for card in EternalCard.objects.all():
-			rbot.setupBot(card, observed)
+			rbot.setupBot(card, observed, reddit)
 
 		for item in observed:
 			#print(item)
