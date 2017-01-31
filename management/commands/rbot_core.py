@@ -54,7 +54,7 @@ def saveMatch(matchType,matchContent,phrase,card,date,parent):
     if type(parent) == praw.models.reddit.comment.Comment:
         print('parent is: ',type(parent))
         print("and it's a comment")
-    elif type(parent) == raw.models.reddit.submission.Submission:
+    elif type(parent) == praw.models.reddit.submission.Submission:
         print('parent is: ',type(parent))
         print("and it's a submission/post")
     cardObject = EternalCard.objects.get(name=card.name)
