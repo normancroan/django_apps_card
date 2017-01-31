@@ -51,12 +51,11 @@ def parseComment(comment,card,submission):
 
 def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
-    if type(parent) == praw.models.reddit.comment.Comment:
-        print('parent is: ',type(parent))
-        print("and it's a comment")
-    elif type(parent) == praw.models.reddit.submission.Submission:
-        print('parent is: ',type(parent))
-        print("and it's a submission/post")
+    def parentBody(parent):
+        if type(parent) == praw.models.reddit.comment.Comment:
+            return parent.body
+        elif type(parent) == praw.models.reddit.submission.Submission:
+            return parent.title
     cardObject = EternalCard.objects.get(name=card.name)
     # Convert a unix time u to a datetime object d, and vice versa
     def dt(u):
@@ -64,6 +63,6 @@ def saveMatch(matchType,matchContent,phrase,card,date,parent):
     dateObject = dt(date)
     print(dateObject)
     try:
-        new_entry = Chatter.objects.get_or_create(eternalcard=cardObject, chatter_type=matchType, chatter_content=matchContent, chatter_source='reddit', pub_date=dateObject)
+        new_entry = Chatter.objects.get_or_create(eternalcard=cardObject, chatter_type=matchType, chatter_content=matchContent, chatter_source='reddit', chatter_parent=parentBody(parent), pub_date=dateObject)
     except:
         print('skipping object')
