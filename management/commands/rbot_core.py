@@ -34,9 +34,9 @@ def parseSubmission(submission,card):
                 saveMatch('post',submission.title,phrase,card,submission.created_utc)
 
     for comment in submission.comments.list():
-        parseComment(comment,card)
+        parseComment(comment,card,submission)
 
-def parseComment(comment,card):
+def parseComment(comment,card,submission):
     for phrase in card.aliases:
         #print('gathering comments for phrase: ',phrase)
         # If we haven't harvested this comment before
@@ -48,7 +48,7 @@ def parseComment(comment,card):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
-                saveMatch('comment',comment.body,phrase,card,comment.created_utc,reddit.get_info(comment_id='comment.parent_id'))
+                saveMatch('comment',comment.body,phrase,card,comment.created_utc,submission.get_info(comment_id='comment.parent_id'))
 
 def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
