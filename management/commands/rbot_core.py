@@ -3,6 +3,7 @@ import praw, re, calendar, datetime
 from card.models import RedditBot, Chatter, EternalCard
 
 reddit = praw.Reddit('bot1')
+print(reddit.get_comments(thing_id='t1_acx23'))
 subreddit = reddit.subreddit('eternalcardgame')
 observed = []
 
@@ -15,7 +16,6 @@ def setupBot(card,observedList):
 def getSubmissions(subreddit,card):
     print("getting submissions from: ",subreddit, 'for: ',card.name)
     for submission in subreddit.hot(limit=1):
-        print(submission.get_comments(thing_id='t1_acx23'))
         submission.comments.replace_more(limit=0)
         parseSubmission(submission,card)
 
