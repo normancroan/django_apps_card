@@ -15,7 +15,7 @@ def setupBot(card, observedList):
 
 def getSubmissions(subreddit,card):
     print("getting submissions from: ",subreddit, 'for: ',card.name)
-    for submission in subreddit.hot(limit=100):
+    for submission in subreddit.hot(limit=1):
         submission.comments.replace_more(limit=0)
         parseSubmission(submission,card)
 
@@ -31,7 +31,7 @@ def parseSubmission(submission,card):
                 #print("Bot found match for: ",phrase," at: ",submission.title)
                 # Store the current id into our list
                 observed.append(str('submission' + submission.id + phrase))
-                saveMatch('post',submission.title,phrase,card,submission.created_utc)
+                saveMatch('post',submission.title,phrase,card,submission.created_utc, submission.parent)
 
     for comment in submission.comments.list():
         parseComment(comment,card)
@@ -48,10 +48,11 @@ def parseComment(comment,card):
                 #print("Bot found match for: ",phrase, comment.body," at: ",comment.id)
                 # Store the current id into our list
                 observed.append(str('comment' + comment.id + phrase))
-                saveMatch('comment',comment.body,phrase,card,comment.created_utc)
+                saveMatch('comment',comment.body,phrase,card,comment.created_utc,comment.parent)
 
-def saveMatch(matchType,matchContent,phrase,card,date):
+def saveMatch(matchType,matchContent,phrase,card,date,parent):
     print('saving... ',matchType,' to card: ',card.name,' with match on alias: ',phrase,'...match is: ',matchContent)
+    print('parent is: ',parent)
     cardObject = EternalCard.objects.get(name=card.name)
     # Convert a unix time u to a datetime object d, and vice versa
     def dt(u):
